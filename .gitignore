@@ -2,3 +2,4 @@
 /dist
 git-set-local.sh
 git-reset-author.sh
+.idea
