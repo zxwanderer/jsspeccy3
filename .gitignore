@@ -3,3 +3,4 @@
 git-set-local.sh
 git-reset-author.sh
 .idea
+.DS_Store
