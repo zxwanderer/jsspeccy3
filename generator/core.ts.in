@@ -110,11 +110,12 @@ while (true) {
     parityTable[i] = (parity ? 0 : FLAG_P);
     sz53pTable[i] = sz53Table[i] | parityTable[i];
 
-    sz53Table[0] |= FLAG_Z;
-    sz53pTable[0] |= FLAG_Z;
     i++;
     if (i == 0) break;
 }
+
+sz53Table[0] |= FLAG_Z;
+sz53pTable[0] |= FLAG_Z;
 
 
 function buildScreenEventsTable(mainScreenStartTstate:u32, tstatesPerRow:u32, borderTimeMask:u32):void {
