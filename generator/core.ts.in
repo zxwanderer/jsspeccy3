@@ -7,6 +7,7 @@ export const FRAME_BUFFER:usize = (&frameBuffer);
 // 10 = 48 rom, 11 = scratch area for ROM writes
 // 12 = Pentagon rom 0 (Pentagon ROM 1 is identical to 128 rom 1)
 // 13 = TRDOS rom
+// 14 = glukpen rom
 #alloc machineMemory[0x40000]: u8
 export const MACHINE_MEMORY:usize = (&machineMemory);
 
@@ -109,11 +110,12 @@ while (true) {
     parityTable[i] = (parity ? 0 : FLAG_P);
     sz53pTable[i] = sz53Table[i] | parityTable[i];
 
-    sz53Table[0] |= FLAG_Z;
-    sz53pTable[0] |= FLAG_Z;
     i++;
     if (i == 0) break;
 }
+
+sz53Table[0] |= FLAG_Z;
+sz53pTable[0] |= FLAG_Z;
 
 
 function buildScreenEventsTable(mainScreenStartTstate:u32, tstatesPerRow:u32, borderTimeMask:u32):void {
@@ -245,7 +247,7 @@ export function setMachineType(type:u32):void {
         recalculateAYCyclesPerSample();
         buildScreenEventsTable(17988, 224, 0xff);
         clearContentionTable(frameCycleCount);
-        rom0Page = 12;
+        rom0Page = 14;
         rom1Page = 9;
         betadiskEnabled = true;
         betadiskROMActive = false;
